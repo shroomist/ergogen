@@ -3,10 +3,10 @@ module.exports = {
         designator: 'JST',
         side: 'F',
         pos: undefined,
-        neg: undefined
+    	neg: undefined
     },
     body: p => `
-    
+
     (module JST_PH_S2B-PH-K_02x2.00mm_Angled (layer F.Cu) (tedit 58D3FE32)
 
         (descr "JST PH series connector, S2B-PH-K, side entry type, through hole, Datasheet: http://www.jst-mfg.com/product/pdf/eng/ePH.pdf")
@@ -32,8 +32,8 @@ module.exports = {
 
         (pad 1 thru_hole rect (at -1 0 ${p.rot}) (size 1.2 1.7) (drill 0.75) (layers *.Cu *.Mask) ${p.pos.str})
         (pad 2 thru_hole oval (at 1 0 ${p.rot}) (size 1.2 1.7) (drill 0.75) (layers *.Cu *.Mask) ${p.neg.str})
-            
+
     )
-    
+
     `
 }
