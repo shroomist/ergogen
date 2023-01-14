@@ -132,17 +132,11 @@ const makerjs2kicad = exports._makerjs2kicad = (model, layer='Edge.Cuts') => {
                     grs.push(`(gr_line (start ${xy(p.origin)}) (end ${xy(p.end)}) (layer "${layer}") (width 0.15))`)
                     break
                 case 'arc':
-                    // const arc_center = p.origin
-                    // const angle_start = p.startAngle > p.endAngle ? p.startAngle - 360 : p.startAngle
-                    // const angle_diff = Math.abs(p.endAngle - angle_start)
-                    // const arc_end = m.point.rotate(m.point.add(arc_center, [p.radius, 0]), angle_start, arc_center)
-                    // grs.push(`(gr_arc (start ${xy(arc_center)}) (end ${xy(arc_end)}) (angle ${-angle_diff}) (layer ${layer}) (width 0.15))`)
-
                     // Normalize angles to the range [0, 360]
-                     let startAngle = ((p.startAngle % 360) + 360) % 360;
-                     let endAngle = ((p.endAngle % 360) + 360) % 360;
+                    let startAngle = ((p.startAngle % 360) + 360) % 360;
+                    let endAngle = ((p.endAngle % 360) + 360) % 360;
 
-                     // check the case when end angle is smaller than start angle
+                    // check the case when end angle is smaller than start angle
                     if (endAngle < startAngle) {
                         endAngle += 360;
                     }
@@ -211,6 +205,7 @@ const footprint = exports._footprint = (points, net_indexer, component_indexer, 
         // combine default value with potential user override
         let value = prep.extend(parsed_def.value, params[param_name])
         let type = parsed_def.type
+
 
         // templating support, with conversion back to raw datatypes
         const converters = {
