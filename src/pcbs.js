@@ -257,6 +257,7 @@ const footprint = exports._footprint = (points, net_indexer, component_indexer, 
 
     // footprint positioning
     parsed_params.at = `(at ${point.x} ${-point.y} ${point.r})`
+    parsed_params.place = [point.x, -point.y]
     parsed_params.rot = point.r
     parsed_params.ixy = (x, y) => {
         const sign = point.meta.mirrored ? -1 : 1

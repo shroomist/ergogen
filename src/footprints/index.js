@@ -18,6 +18,7 @@ module.exports = {
     slider: require('./slider'),
     trrs: require('./trrs'),
     via: require('./via'),
+    simple_via: require('./simple_via'),
     pcm12: require('./pcm12'),
     bat: require('./bat'),
     bat2p0: require('./bat2p0'),
