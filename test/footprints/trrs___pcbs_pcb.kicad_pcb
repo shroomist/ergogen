@@ -119,114 +119,208 @@
   )
 
             
+  (net_class Power "This is the power net class."
+    (clearance 0.2)
+    (trace_width 0.5)
+    (via_dia 0.8)
+    (via_drill 0.4)
+    (uvia_dia 0.3)
+    (uvia_drill 0.1)
+    
+  )
+
+            
+            
+            (module TRRS-PJ-320A-dual (layer F.Cu) (tedit 5970F8E5)
+
+            (at 0 0 0)
+
+            (attr through_hole)
+            (fp_text reference "TRRS_F" (at -0.85 4.95 180) (layer "F.Fab")
+            (effects (font (size 1 1) (thickness 0.15)) )
+            )
+            (fp_text value "AudioJack4" (at 0 14 90) (layer "F.Fab") hide
+            (effects (font (size 1 1) (thickness 0.15)))
+            )
+            (fp_text user "TRRS" (at 0.054 6.35) (layer "F.SilkS")
+            (effects (font (size 1 1) (thickness 0.15)) )
+            )
+            (fp_text user "Sleeve" (at 0.25 11.4 90) (layer "F.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "Tip" (at 0 10 90) (layer "F.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "R inner" (at 0 6.25 90) (layer "F.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "R outer" (at 0 3.25 90) (layer "F.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_line (start 3.05 0) (end -3.05 0) (layer "F.SilkS") (width 0.15) )
+            (fp_line (start -3.05 0) (end -3.05 12.1) (layer "F.SilkS") (width 0.15))
+            (fp_line (start 2.8 0) (end 2.8 -2) (layer "F.SilkS") (width 0.15))
+            (fp_line (start -2.8 0) (end -2.8 -2) (layer "F.SilkS") (width 0.15))
+            (fp_line (start 3.05 12.1) (end -3.05 12.1) (layer "F.SilkS") (width 0.15))
+            (fp_line (start 3.05 0) (end 3.05 12.1) (layer "F.SilkS") (width 0.15))
+            (fp_line (start 2.8 -2) (end -2.8 -2) (layer "F.SilkS") (width 0.15))
+            (pad "" np_thru_hole circle (at 0 1.6 270) (size 1.2 1.2) (drill 1.2) (layers *.Cu *.Mask))
+            (pad "" np_thru_hole circle (at 0 8.6 270) (size 1.2 1.2) (drill 1.2) (layers *.Cu *.Mask))
         
-      (module TRRS-PJ-320A-dual (layer F.Cu) (tedit 5970F8E5)
-
-      (at 0 0 0)   
-
+            
+        (model "${KICAD6_3RD_PARTY}/3dmodels/ergogen/PJ320A.STEP"
+                (offset (xyz -0.25 -5.2 -12))
+                (scale (xyz 1 1 1))
+                (rotate (xyz 0 0 90))
+            )
       
-      (fp_text reference "TRRS1" (at 0 14.2) (layer Dwgs.User) (effects (font (size 1 1) (thickness 0.15))))
-      (fp_text value TRRS-PJ-320A-dual (at 0 -5.6) (layer F.Fab) (effects (font (size 1 1) (thickness 0.15))))
-
-      
-      (fp_line (start 0.5 -2) (end -5.1 -2) (layer Dwgs.User) (width 0.15))
-      (fp_line (start -5.1 0) (end -5.1 -2) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.5 0) (end 0.5 -2) (layer Dwgs.User) (width 0.15))
-      (fp_line (start -5.35 0) (end -5.35 12.1) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.75 0) (end 0.75 12.1) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.75 12.1) (end -5.35 12.1) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.75 0) (end -5.35 0) (layer Dwgs.User) (width 0.15))
-
-      
-        
-        (pad "" np_thru_hole circle (at -2.3 8.6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
-        (pad "" np_thru_hole circle (at -2.3 1.6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
-      
-        
-        (pad 1 thru_hole oval (at -4.6 11.3 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 1 "A"))
-        (pad 2 thru_hole oval (at 0 10.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 2 "B"))
-        (pad 3 thru_hole oval (at 0 6.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 3 "C"))
-        (pad 4 thru_hole oval (at 0 3.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 4 "D"))
-      )
-      
-
-          
-      (module TRRS-PJ-320A-dual (layer F.Cu) (tedit 5970F8E5)
-
-      (at 50 0 0)   
-
-      
-      (fp_text reference "TRRS2" (at 0 14.2) (layer Dwgs.User) (effects (font (size 1 1) (thickness 0.15))))
-      (fp_text value TRRS-PJ-320A-dual (at 0 -5.6) (layer F.Fab) (effects (font (size 1 1) (thickness 0.15))))
-
-      
-      (fp_line (start 0.5 -2) (end -5.1 -2) (layer Dwgs.User) (width 0.15))
-      (fp_line (start -5.1 0) (end -5.1 -2) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.5 0) (end 0.5 -2) (layer Dwgs.User) (width 0.15))
-      (fp_line (start -5.35 0) (end -5.35 12.1) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.75 0) (end 0.75 12.1) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.75 12.1) (end -5.35 12.1) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.75 0) (end -5.35 0) (layer Dwgs.User) (width 0.15))
-
-      
-          
-        (pad "" np_thru_hole circle (at -2.3 8.6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
-        (pad "" np_thru_hole circle (at -2.3 1.6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
-      
-          
-        (pad "" np_thru_hole circle (at 0 8.6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
-        (pad "" np_thru_hole circle (at 0 1.6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
-      
-          
-        (pad 1 thru_hole oval (at -2.3 11.3 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 1 "A"))
-        (pad 2 thru_hole oval (at 2.3 10.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 2 "B"))
-        (pad 3 thru_hole oval (at 2.3 6.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 3 "C"))
-        (pad 4 thru_hole oval (at 2.3 3.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 4 "D"))
-      
-          
-        (pad 1 thru_hole oval (at 0 11.3 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 1 "A"))
-        (pad 2 thru_hole oval (at -4.6 10.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 2 "B"))
-        (pad 3 thru_hole oval (at -4.6 6.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 3 "C"))
-        (pad 4 thru_hole oval (at -4.6 3.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 4 "D"))
+            
+        (pad "R1" thru_hole oval (at 2.3 6.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 3 "C") (pintype "passive") )
+        (pad "R2" thru_hole oval (at 2.3 3.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 4 "D") (pintype "passive") )
+        (pad "S" thru_hole oval (at -2.3 11.3 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 1 "A") (pintype "passive") )
+        (pad "T" thru_hole oval (at 2.3 10.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 2 "B") (pintype "passive") )
       )
         
 
-        
-      (module TRRS-PJ-320A-dual (layer F.Cu) (tedit 5970F8E5)
+            
+            (module TRRS-PJ-320A-dual (layer B.Cu) (tedit 5970F8E5)
 
-      (at 100 0 0)   
+            (at 50 0 0)
 
-      
-      (fp_text reference "TRRS3" (at 0 14.2) (layer Dwgs.User) (effects (font (size 1 1) (thickness 0.15))))
-      (fp_text value TRRS-PJ-320A-dual (at 0 -5.6) (layer F.Fab) (effects (font (size 1 1) (thickness 0.15))))
-
-      
-      (fp_line (start 0.5 -2) (end -5.1 -2) (layer Dwgs.User) (width 0.15))
-      (fp_line (start -5.1 0) (end -5.1 -2) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.5 0) (end 0.5 -2) (layer Dwgs.User) (width 0.15))
-      (fp_line (start -5.35 0) (end -5.35 12.1) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.75 0) (end 0.75 12.1) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.75 12.1) (end -5.35 12.1) (layer Dwgs.User) (width 0.15))
-      (fp_line (start 0.75 0) (end -5.35 0) (layer Dwgs.User) (width 0.15))
-
-      
+            (attr through_hole)
+            (fp_text reference "TRRS_B" (at -0.85 4.95 180) (layer "B.Fab")
+            (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
+            )
+            (fp_text value "AudioJack4" (at 0 14 90) (layer "B.Fab") hide
+            (effects (font (size 1 1) (thickness 0.15)))
+            )
+            (fp_text user "TRRS" (at 0.054 6.35) (layer "B.SilkS")
+            (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
+            )
+            (fp_text user "Sleeve" (at 0.25 11.4 90) (layer "B.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "Tip" (at 0 10 90) (layer "B.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "R inner" (at 0 6.25 90) (layer "B.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "R outer" (at 0 3.25 90) (layer "B.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_line (start 3.05 0) (end -3.05 0) (layer "B.SilkS") (width 0.15) )
+            (fp_line (start -3.05 0) (end -3.05 12.1) (layer "B.SilkS") (width 0.15))
+            (fp_line (start 2.8 0) (end 2.8 -2) (layer "B.SilkS") (width 0.15))
+            (fp_line (start -2.8 0) (end -2.8 -2) (layer "B.SilkS") (width 0.15))
+            (fp_line (start 3.05 12.1) (end -3.05 12.1) (layer "B.SilkS") (width 0.15))
+            (fp_line (start 3.05 0) (end 3.05 12.1) (layer "B.SilkS") (width 0.15))
+            (fp_line (start 2.8 -2) (end -2.8 -2) (layer "B.SilkS") (width 0.15))
+            (pad "" np_thru_hole circle (at 0 1.6 270) (size 1.2 1.2) (drill 1.2) (layers *.Cu *.Mask))
+            (pad "" np_thru_hole circle (at 0 8.6 270) (size 1.2 1.2) (drill 1.2) (layers *.Cu *.Mask))
         
-        (pad "" np_thru_hole circle (at -2.3 8.6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
-        (pad "" np_thru_hole circle (at -2.3 1.6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
-      
-        
-        (pad 1 thru_hole oval (at 0 11.3 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 1 "A"))
-        (pad 2 thru_hole oval (at -4.6 10.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 2 "B"))
-        (pad 3 thru_hole oval (at -4.6 6.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 3 "C"))
-        (pad 4 thru_hole oval (at -4.6 3.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 4 "D"))
-      
-        
-        (pad 1 thru_hole oval (at -4.6 11.3 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 1 "A"))
-        (pad 2 thru_hole oval (at 0 10.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 2 "B"))
-        (pad 3 thru_hole oval (at 0 6.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 3 "C"))
-        (pad 4 thru_hole oval (at 0 3.2 0) (size 1.6 2.2) (drill oval 0.9 1.5) (layers *.Cu *.Mask) (net 4 "D"))
+            
+        (pad "R1" thru_hole oval (at -2.3 6.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 3 "C") (pintype "passive") )
+        (pad "R2" thru_hole oval (at -2.3 3.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 4 "D") (pintype "passive") )
+        (pad "S" thru_hole oval (at 2.3 11.3 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 1 "A") (pintype "passive") )
+        (pad "T" thru_hole oval (at -2.3 10.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 2 "B") (pintype "passive") )
       )
+        
+
+            
+            (module TRRS-PJ-320A-dual (layer F.Cu) (tedit 5970F8E5)
+
+            (at 100 0 0)
+
+            (attr through_hole)
+            (fp_text reference "TRRS_F" (at -0.85 4.95 180) (layer "F.Fab")
+            (effects (font (size 1 1) (thickness 0.15)) )
+            )
+            (fp_text value "AudioJack4" (at 0 14 90) (layer "F.Fab") hide
+            (effects (font (size 1 1) (thickness 0.15)))
+            )
+            (fp_text user "TRRS" (at 0.054 6.35) (layer "F.SilkS")
+            (effects (font (size 1 1) (thickness 0.15)) )
+            )
+            (fp_text user "Sleeve" (at 0.25 11.4 90) (layer "F.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "Tip" (at 0 10 90) (layer "F.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "R inner" (at 0 6.25 90) (layer "F.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "R outer" (at 0 3.25 90) (layer "F.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_line (start 3.05 0) (end -3.05 0) (layer "F.SilkS") (width 0.15) )
+            (fp_line (start -3.05 0) (end -3.05 12.1) (layer "F.SilkS") (width 0.15))
+            (fp_line (start 2.8 0) (end 2.8 -2) (layer "F.SilkS") (width 0.15))
+            (fp_line (start -2.8 0) (end -2.8 -2) (layer "F.SilkS") (width 0.15))
+            (fp_line (start 3.05 12.1) (end -3.05 12.1) (layer "F.SilkS") (width 0.15))
+            (fp_line (start 3.05 0) (end 3.05 12.1) (layer "F.SilkS") (width 0.15))
+            (fp_line (start 2.8 -2) (end -2.8 -2) (layer "F.SilkS") (width 0.15))
+            (pad "" np_thru_hole circle (at 0 1.6 270) (size 1.2 1.2) (drill 1.2) (layers *.Cu *.Mask))
+            (pad "" np_thru_hole circle (at 0 8.6 270) (size 1.2 1.2) (drill 1.2) (layers *.Cu *.Mask))
+        
+            
+        (model "${KICAD6_3RD_PARTY}/3dmodels/ergogen/PJ320A.STEP"
+                (offset (xyz -0.25 -5.2 -12))
+                (scale (xyz 1 1 1))
+                (rotate (xyz 0 0 90))
+            )
+      )
+            
+            (module TRRS-PJ-320A-dual (layer B.Cu) (tedit 5970F8E5)
+
+            (at 100 0 0)
+
+            (attr through_hole)
+            (fp_text reference "TRRS_B" (at -0.85 4.95 180) (layer "B.Fab")
+            (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
+            )
+            (fp_text value "AudioJack4" (at 0 14 90) (layer "B.Fab") hide
+            (effects (font (size 1 1) (thickness 0.15)))
+            )
+            (fp_text user "TRRS" (at 0.054 6.35) (layer "B.SilkS")
+            (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
+            )
+            (fp_text user "Sleeve" (at 0.25 11.4 90) (layer "B.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "Tip" (at 0 10 90) (layer "B.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "R inner" (at 0 6.25 90) (layer "B.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_text user "R outer" (at 0 3.25 90) (layer "B.Fab") hide
+            (effects (font (size 0.7 0.7) (thickness 0.1)))
+            )
+            (fp_line (start 3.05 0) (end -3.05 0) (layer "B.SilkS") (width 0.15) )
+            (fp_line (start -3.05 0) (end -3.05 12.1) (layer "B.SilkS") (width 0.15))
+            (fp_line (start 2.8 0) (end 2.8 -2) (layer "B.SilkS") (width 0.15))
+            (fp_line (start -2.8 0) (end -2.8 -2) (layer "B.SilkS") (width 0.15))
+            (fp_line (start 3.05 12.1) (end -3.05 12.1) (layer "B.SilkS") (width 0.15))
+            (fp_line (start 3.05 0) (end 3.05 12.1) (layer "B.SilkS") (width 0.15))
+            (fp_line (start 2.8 -2) (end -2.8 -2) (layer "B.SilkS") (width 0.15))
+            (pad "" np_thru_hole circle (at 0 1.6 270) (size 1.2 1.2) (drill 1.2) (layers *.Cu *.Mask))
+            (pad "" np_thru_hole circle (at 0 8.6 270) (size 1.2 1.2) (drill 1.2) (layers *.Cu *.Mask))
+        
+            
+        (pad "R1" thru_hole oval (at -2.3 6.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 3 "C") (pintype "passive") )
+        (pad "R2" thru_hole oval (at -2.3 3.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 4 "D") (pintype "passive") )
+        (pad "S" thru_hole oval (at 2.3 11.3 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 1 "A") (pintype "passive") )
+        (pad "T" thru_hole oval (at -2.3 10.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 2 "B") (pintype "passive") )
       
+            
+        (pad "R1" thru_hole oval (at 2.3 6.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 3 "C") (pintype "passive") )
+        (pad "R2" thru_hole oval (at 2.3 3.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 4 "D") (pintype "passive") )
+        (pad "S" thru_hole oval (at -2.3 11.3 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 1 "A") (pintype "passive") )
+        (pad "T" thru_hole oval (at 2.3 10.2 0) (size 1.6 2) (drill oval 0.9 1.3) (layers *.Cu *.Mask) (net 2 "B") (pintype "passive") )
+      )
+        
             
             
 )
