@@ -127,8 +127,6 @@
 (add_net "to")
 (add_net "pos")
 (add_net "neg")
-(add_net "VCC")
-(add_net "GND")
 (add_net "SDA")
 (add_net "SCL")
 (add_net "din")
@@ -138,6 +136,18 @@
 (add_net "C")
 (add_net "D")
 (add_net "net")
+  )
+
+            
+  (net_class Power "This is the power net class."
+    (clearance 0.2)
+    (trace_width 0.5)
+    (via_dia 0.8)
+    (via_drill 0.4)
+    (uvia_dia 0.3)
+    (uvia_drill 0.1)
+    (add_net "VCC")
+(add_net "GND")
   )
 
             
@@ -167,7 +177,7 @@
 
     
 
-    
+
     (module JST_PH_S2B-PH-K_02x2.00mm_Angled (layer F.Cu) (tedit 58D3FE32)
 
         (descr "JST PH series connector, S2B-PH-K, side entry type, through hole, Datasheet: http://www.jst-mfg.com/product/pdf/eng/ePH.pdf")
@@ -193,17 +203,18 @@
 
         (pad 1 thru_hole rect (at -1 0 0) (size 1.2 1.7) (drill 0.75) (layers *.Cu *.Mask) (net 3 "pos"))
         (pad 2 thru_hole oval (at 1 0 0) (size 1.2 1.7) (drill 0.75) (layers *.Cu *.Mask) (net 4 "neg"))
-            
+
     )
-    
+
     
 
-        (module lib:Jumper (layer F.Cu) (tedit 5E1ADAC2)
-        (at 100 0 0) 
+        (footprint "PCM12SMTR" (layer F.Cu) (tedit 5E1ADAC2)
+        (at 100 0 0)
 
-                
+        
         (fp_text reference "J1" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
         (fp_text value Jumper (at 0 -7.3) (layer F.Fab) (effects (font (size 1 1) (thickness 0.15))))
+        (fp_text value Jumper (at 0 2 270) (layer F.SilkS) (effects (font (size 1 1) (thickness 0.15))  ))
 
         
         (pad 1 smd rect (at -0.50038 0 0) (size 0.635 1.143) (layers F.Cu F.Paste F.Mask)
@@ -345,35 +356,37 @@
     
 
         
-        (module RollerEncoder_Panasonic_EVQWGD001 (layer F.Cu) (tedit 6040A10C)
-        (at 50 -100 0)   
-        (fp_text reference REF** (at 0 0 0) (layer F.Fab) (effects (font (size 1 1) (thickness 0.15))))
-        (fp_text value RollerEncoder_Panasonic_EVQWGD001 (at -0.1 9 0) (layer F.Fab) (effects (font (size 1 1) (thickness 0.15))))
+        (module RollerEncoder_Panasonic_EVQWGD001 (layer "F.Cu") (tedit 6040A10C)
+        (at 50 -100 0)
+        (attr through_hole)
+        (fp_text reference REF** (at 0 0 0) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))
+        (fp_text value RollerEncoder_Panasonic_EVQWGD001 (at -0.1 9 0) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))
+
         
-        
-        (fp_line (start -8.4 -6.4) (end 8.4 -6.4) (layer Dwgs.User) (width 0.12))
-        (fp_line (start 8.4 -6.4) (end 8.4 7.4) (layer Dwgs.User) (width 0.12))
-        (fp_line (start 8.4 7.4) (end -8.4 7.4) (layer Dwgs.User) (width 0.12))
-        (fp_line (start -8.4 7.4) (end -8.4 -6.4) (layer Dwgs.User) (width 0.12))
+        (fp_line (start -8.4 -6.4) (end 8.4 -6.4) (layer "Dwgs.User") (width 0.12))
+        (fp_line (start 8.4 -6.4) (end 8.4 7.4) (layer "Dwgs.User") (width 0.12))
+        (fp_line (start 8.4 7.4) (end -8.4 7.4) (layer "Dwgs.User") (width 0.12))
+        (fp_line (start -8.4 7.4) (end -8.4 -6.4) (layer "Dwgs.User") (width 0.12))
       
         
+        
+         (fp_line (start 9.8 7.3) (end 9.8 -6.3) (layer "Edge.Cuts") (width 0.15))
+         (fp_line (start 7.4 -6.3) (end 7.4 7.3) (layer "Edge.Cuts") (width 0.15))
+         (fp_line (start 9.5 -6.6) (end 7.7 -6.6) (layer "Edge.Cuts") (width 0.15))
+         (fp_line (start 7.7 7.6) (end 9.5 7.6) (layer "Edge.Cuts") (width 0.15))
+         (fp_arc (start 9.8 7.3) (mid 9.712132 7.512132) (end 9.5 7.6) (layer "Edge.Cuts") (width 0.15))
+         (fp_arc (start 7.7 7.6) (mid 7.487868 7.512132) (end 7.4 7.3) (layer "Edge.Cuts") (width 0.15))
+         (fp_arc (start 9.5 -6.6) (mid 9.712132 -6.512132) (end 9.8 -6.3) (layer "Edge.Cuts") (width 0.15))
+         (fp_arc (start 7.4 -6.3) (mid 7.487868 -6.512132) (end 7.7 -6.6) (layer "Edge.Cuts") (width 0.15))
+        
+        
           
-          (fp_line (start 9.8 7.3) (end 9.8 -6.3) (layer Edge.Cuts) (width 0.15))
-          (fp_line (start 7.4 -6.3) (end 7.4 7.3) (layer Edge.Cuts) (width 0.15))
-          (fp_line (start 9.5 -6.6) (end 7.7 -6.6) (layer Edge.Cuts) (width 0.15))
-          (fp_line (start 7.7 7.6) (end 9.5 7.6) (layer Edge.Cuts) (width 0.15))
-          (fp_arc (start 7.7 7.3) (end 7.4 7.3) (angle -90) (layer Edge.Cuts) (width 0.15))
-          (fp_arc (start 9.5 7.3) (end 9.5 7.6) (angle -90) (layer Edge.Cuts) (width 0.15))
-          (fp_arc (start 7.7 -6.3) (end 7.7 -6.6) (angle -90) (layer Edge.Cuts) (width 0.15))
-          (fp_arc (start 9.5 -6.3) (end 9.8 -6.3) (angle -90) (layer Edge.Cuts) (width 0.15))
-
-          
-          (pad S1 thru_hole circle (at -6.85 -6.2 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 1 "from"))
-          (pad S2 thru_hole circle (at -5 -6.2 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 2 "to"))
-          (pad A thru_hole circle (at -5.625 -3.81 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 11 "A"))
-          (pad B thru_hole circle (at -5.625 -1.27 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 12 "B"))
-          (pad C thru_hole circle (at -5.625 1.27 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 13 "C"))
-          (pad D thru_hole circle (at -5.625 3.81 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 14 "D"))
+          (pad "S1" thru_hole circle (at -6.85 -6.2 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 1 "from"))
+          (pad "S2" thru_hole circle (at -5 -6.2 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 2 "to"))
+          (pad "A" thru_hole circle (at -5.625 -3.81 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 11 "A"))
+          (pad "B" thru_hole circle (at -5.625 -1.27 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 12 "B"))
+          (pad "C" thru_hole circle (at -5.625 1.27 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 13 "C"))
+          (pad "D" thru_hole circle (at -5.625 3.81 0) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask) (net 14 "D"))
 
           
           (pad "" np_thru_hole circle (at -5.625 6.3 0) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
@@ -421,9 +434,9 @@
         
 
       (module VIA-0.6mm (layer F.Cu) (tedit 591DBFB0)
-      (at 0 -150 0)   
+      (at 0 -150 0)
       
-      (fp_text reference REF** (at 0 1.4) (layer F.SilkS) hide (effects (font (size 1 1) (thickness 0.15))))
+      (fp_text reference _1 (at 0 1.4) (layer F.SilkS) hide (effects (font (size 1 1) (thickness 0.15))))
       (fp_text value VIA-0.6mm (at 0 -1.4) (layer F.Fab) hide (effects (font (size 1 1) (thickness 0.15))))
 
       

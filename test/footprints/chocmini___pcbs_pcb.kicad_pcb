@@ -115,6 +115,17 @@
   )
 
             
+  (net_class Power "This is the power net class."
+    (clearance 0.2)
+    (trace_width 0.5)
+    (via_dia 0.8)
+    (via_drill 0.4)
+    (uvia_dia 0.3)
+    (uvia_drill 0.1)
+    
+  )
+
+            
           
         (module lib:Kailh_PG1232 (layer F.Cu) (tedit 5E1ADAC2)
         (at 0 0 0) 
