@@ -9,7 +9,7 @@ module.exports = {
 
     ${'' /* footprint description, tags and reference */}
     (descr "Porcupine Logo")
-
+    (attr exclude_from_bom)
     (fp_text reference "LOGO_${p.side}" (at 0 0) (layer ${p.side}.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))
     (fp_text value "" (at 0 0) (layer ${p.side}.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
 
