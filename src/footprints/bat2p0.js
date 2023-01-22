@@ -3,8 +3,8 @@
 module.exports = {
     params: {
         class: 'PAD',
-        width: 1,
-        height: 1,
+        width: 1.2,
+        height: 1.75,
         front: true,
         back: true,
         text: '',
@@ -43,12 +43,11 @@ module.exports = {
             (fp_line (start -2 -2) (end -2 -3) (layer "${side}.SilkS") (width 0.12))
 
 
-
-
-            (pad 1 thru_hole circle (at 0 -1.0 ${p.rot}) (size ${p.width} ${p.height}) (drill 0.8) (layers *.Cu ${side}.SilkS ${side}.Mask) ${p.pos.str})
+            (pad "1" thru_hole roundrect (at 0 -1 ${p.rot}) (size ${p.height} ${p.width}) (drill 0.75) (layers *.Cu ${side}.SilkS ${side}.Mask) ${p.pos.str} (roundrect_rratio 0.208333))
             (fp_text user ${p.pos.name} (at ${x_pos} ${y_pos} ${p.rot}) (layer ${side}.SilkS) (effects (font (size 0.8 0.8) (thickness 0.15)) ${mirror}))
-            (pad 2 thru_hole circle (at 0 1.0 ${p.rot}) (size ${p.width} ${p.height}) (drill 0.8) (layers *.Cu ${side}.SilkS ${side}.Mask) ${p.neg.str})
+            (pad "2" thru_hole oval (at 0 1 ${p.rot}) (size ${p.height} ${p.width}) (drill 0.75) (layers *.Cu ${side}.SilkS ${side}.Mask) ${p.neg.str})
             (fp_text user ${p.neg.name} (at ${x_neg} ${y_neg} ${p.rot}) (layer ${side}.SilkS) (effects (font (size 0.8 0.8) (thickness 0.15)) ${mirror}))
+
             `
         }
 
@@ -56,6 +55,10 @@ module.exports = {
             (module lib:bat2p0 (layer F.Cu) (tstamp 5BF2CC94)
 
             ${p.at /* parametric position */}
+            (descr "JST PH series connector, S2B-PH-K (http://www.jst-mfg.com/product/pdf/eng/ePH.pdf)")
+            (tags "connector JST PH side entry")
+            (property "LCSC Part #" "C265016" )
+            (attr through_hole)
             (fp_text reference "${p.ref}" (at 0 0) (layer F.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))
             (fp_text value "" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
 

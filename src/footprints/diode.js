@@ -55,12 +55,13 @@ module.exports = {
             `
 
         const standard = `
-            (footprint "Diode_SMD:D_SOD-123" (layer "F.Cu")
+            (footprint "Diode_SMD:SOD-123" (layer "F.Cu")
 
 
             ${p.at /* parametric position */}
             (descr "SOD-123")
             (tags "SOD-123")
+            (property "LCSC Part #" "C105503" )
             (attr smd)
 
             ${'' /* footprint reference */}
