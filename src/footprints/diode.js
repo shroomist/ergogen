@@ -29,6 +29,14 @@ module.exports = {
             (fp_line (start -1.4 0.9) (end -1.4 -0.9) (layer "F.Fab") (width 0.1))
             (fp_line (start 0.25 0.4) (end -0.35 0) (layer "F.Fab") (width 0.1))
             (fp_line (start -1.4 -0.9) (end 1.4 -0.9) (layer "F.Fab") (width 0.1))
+
+            (fp_line (start 0.25 0) (end 0.75 0) (layer "F.SilkS") (width 0.1))
+            (fp_line (start -0.75 0) (end -0.35 0) (layer "F.SilkS") (width 0.1))
+            (fp_line (start -0.35 0) (end 0.25 -0.4) (layer "F.SilkS") (width 0.1))
+            (fp_line (start -0.35 0) (end -0.35 -0.55) (layer "F.SilkS") (width 0.1))
+            (fp_line (start 0.25 0.4) (end -0.35 0) (layer "F.SilkS") (width 0.1))
+            (fp_line (start -0.35 0) (end -0.35 0.55) (layer "F.SilkS") (width 0.1))
+            (fp_line (start 0.25 -0.4) (end 0.25 0.4) (layer "F.SilkS") (width 0.1))
             `
 
         const symbolsB = `
@@ -51,6 +59,14 @@ module.exports = {
             (fp_line (start -1.4 0.9) (end -1.4 -0.9) (layer "B.Fab") (width 0.1))
             (fp_line (start -1.4 -0.9) (end 1.4 -0.9) (layer "B.Fab") (width 0.1))
             (fp_line (start -0.35 0) (end -0.35 0.55) (layer "B.Fab") (width 0.1))
+
+            (fp_line (start -0.35 0) (end -0.35 -0.55) (layer "B.SilkS") (width 0.1))
+            (fp_line (start -0.35 0) (end -0.35 0.55) (layer "B.SilkS") (width 0.1))
+            (fp_line (start 0.25 0.4) (end -0.35 0) (layer "B.SilkS") (width 0.1))
+            (fp_line (start -0.75 0) (end -0.35 0) (layer "B.SilkS") (width 0.1))
+            (fp_line (start 0.25 0) (end 0.75 0) (layer "B.SilkS") (width 0.1))
+            (fp_line (start 0.25 -0.4) (end 0.25 0.4) (layer "B.SilkS") (width 0.1))
+            (fp_line (start -0.35 0) (end 0.25 -0.4) (layer "B.SilkS") (width 0.1))
 
             `
 
