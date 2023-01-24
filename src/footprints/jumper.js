@@ -21,14 +21,14 @@ module.exports = {
         (fp_text value Jumper (at 0 2 270) (layer ${p.side}.SilkS) (effects (font (size 1 1) (thickness 0.15)) ${justify} ))
 
         ${'' /* pins */}
-        (fp_line (start 1.4 1) (end -1.4 1) (layer "F.SilkS") (width 0.12))
-        (fp_line (start 1.4 -1) (end 1.4 1) (layer "F.SilkS") (width 0.12))
-        (fp_line (start -1.4 1) (end -1.4 -1) (layer "F.SilkS") (width 0.12))
-        (fp_line (start -1.4 -1) (end 1.4 -1) (layer "F.SilkS") (width 0.12))
-        (fp_line (start -1.65 -1.25) (end 1.65 -1.25) (layer "F.CrtYd") (width 0.05))
-        (fp_line (start 1.65 1.25) (end -1.65 1.25) (layer "F.CrtYd") (width 0.05))
-        (fp_line (start 1.65 1.25) (end 1.65 -1.25) (layer "F.CrtYd") (width 0.05))
-        (fp_line (start -1.65 -1.25) (end -1.65 1.25) (layer "F.CrtYd") (width 0.05))
+        (fp_line (start 1.4 1) (end -1.4 1) (layer "${p.side}.SilkS") (width 0.12))
+        (fp_line (start 1.4 -1) (end 1.4 1) (layer "${p.side}.SilkS") (width 0.12))
+        (fp_line (start -1.4 1) (end -1.4 -1) (layer "${p.side}.SilkS") (width 0.12))
+        (fp_line (start -1.4 -1) (end 1.4 -1) (layer "${p.side}.SilkS") (width 0.12))
+        (fp_line (start -1.65 -1.25) (end 1.65 -1.25) (layer "${p.side}.CrtYd") (width 0.05))
+        (fp_line (start 1.65 1.25) (end -1.65 1.25) (layer "${p.side}.CrtYd") (width 0.05))
+        (fp_line (start 1.65 1.25) (end 1.65 -1.25) (layer "${p.side}.CrtYd") (width 0.05))
+        (fp_line (start -1.65 -1.25) (end -1.65 1.25) (layer "${p.side}.CrtYd") (width 0.05))
 
         (pad "1" smd custom (at -0.725 0 ${p.rot}) (size 0.3 0.3) (layers "${p.side}.Cu" "${p.side}.Mask")
           ${p.from.str} (zone_connect 2)
