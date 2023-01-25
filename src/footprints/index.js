@@ -25,6 +25,7 @@ module.exports = {
     b3u1000p: require('./b3u1000p'),
     mountinghole: require('./mountinghole'),
     porcupine: require('./porcupine'),
+    porcupine_new: require('./porcupine_new'),
     sideindicator: require('./sideindicator'),
     tactswitch: require('./tactswitch'),
     tentingpuck: require('./tentingpuck'),
