@@ -8,40 +8,40 @@ const anchor = require('./anchor').parse
 const filter = require('./filter').parse
 
 const kicad_prefix = `
-(kicad_pcb (version 20171130) (host pcbnew 5.1.6)
-
-  (page A3)
-  (title_block
-    (title KEYBOARD_NAME_HERE)
-    (rev VERSION_HERE)
-    (company YOUR_NAME_HERE)
-  )
+(kicad_pcb (version 20211014) (generator pcbnew)
 
   (general
     (thickness 1.6)
   )
 
+  (paper "A3")
+  (title_block
+    (title "KEYBOARD_NAME_HERE")
+    (rev "VERSION_HERE")
+    (company "YOUR_NAME_HERE")
+  )
+
   (layers
-    (0 F.Cu signal)
-    (31 B.Cu signal)
-    (32 B.Adhes user)
-    (33 F.Adhes user)
-    (34 B.Paste user)
-    (35 F.Paste user)
-    (36 B.SilkS user)
-    (37 F.SilkS user)
-    (38 B.Mask user)
-    (39 F.Mask user)
-    (40 Dwgs.User user)
-    (41 Cmts.User user)
-    (42 Eco1.User user)
-    (43 Eco2.User user)
-    (44 Edge.Cuts user)
-    (45 Margin user)
-    (46 B.CrtYd user)
-    (47 F.CrtYd user)
-    (48 B.Fab user)
-    (49 F.Fab user)
+    (0 "F.Cu" signal)
+    (31 "B.Cu" signal)
+    (32 "B.Adhes" user "B.Adhesive")
+    (33 "F.Adhes" user "F.Adhesive")
+    (34 "B.Paste" user)
+    (35 "F.Paste" user)
+    (36 "B.SilkS" user "B.Silkscreen")
+    (37 "F.SilkS" user "F.Silkscreen")
+    (38 "B.Mask" user)
+    (39 "F.Mask" user)
+    (40 "Dwgs.User" user "User.Drawings")
+    (41 "Cmts.User" user "User.Comments")
+    (42 "Eco1.User" user "User.Eco1")
+    (43 "Eco2.User" user "User.Eco2")
+    (44 "Edge.Cuts" user)
+    (45 "Margin" user)
+    (46 "B.CrtYd" user "B.Courtyard")
+    (47 "F.CrtYd" user "F.Courtyard")
+    (48 "B.Fab" user)
+    (49 "F.Fab" user)
   )
 
   (setup
@@ -72,13 +72,15 @@ const kicad_prefix = `
     (aux_axis_origin 0 0)
     (visible_elements FFFFFF7F)
     (pcbplotparams
-      (layerselection 0x010fc_ffffffff)
+      (layerselection 0x00010fc_ffffffff)
+      (disableapertmacros false)
       (usegerberextensions false)
       (usegerberattributes true)
       (usegerberadvancedattributes true)
       (creategerberjobfile true)
+      (svguseinch false)
+      (svgprecision 6)
       (excludeedgelayer true)
-      (linewidth 0.100000)
       (plotframeref false)
       (viasonmask false)
       (mode 1)
@@ -86,18 +88,22 @@ const kicad_prefix = `
       (hpglpennumber 1)
       (hpglpenspeed 20)
       (hpglpendiameter 15.000000)
+      (dxfpolygonmode true)
+      (dxfimperialunits true)
+      (dxfusepcbnewfont true)
       (psnegative false)
       (psa4output false)
       (plotreference true)
       (plotvalue true)
       (plotinvisibletext false)
-      (padsonsilk false)
+      (sketchpadsonfab false)
       (subtractmaskfromsilk false)
       (outputformat 1)
       (mirror false)
       (drillshape 1)
       (scaleselection 1)
-      (outputdirectory ""))
+      (outputdirectory "")
+    )
   )
 `
 
@@ -105,7 +111,7 @@ const kicad_suffix = `
 )
 `
 
-const kicad_netclass = `
+const kicad_default_netclass = `
   (net_class Default "This is the default net class."
     (clearance 0.2)
     (trace_width 0.25)
@@ -117,7 +123,19 @@ const kicad_netclass = `
   )
 `
 
-const makerjs2kicad = exports._makerjs2kicad = (model, layer) => {
+const kicad_power_netclass = `
+  (net_class Power "This is the power net class."
+    (clearance 0.2)
+    (trace_width 0.5)
+    (via_dia 0.8)
+    (via_drill 0.4)
+    (uvia_dia 0.3)
+    (uvia_drill 0.1)
+    __ADD_NET
+  )
+`
+
+const makerjs2kicad = exports._makerjs2kicad = (model, layer='Edge.Cuts') => {
     const grs = []
     const xy = val => `${val[0]} ${-val[1]}`
     m.model.walk(model, {
@@ -125,19 +143,26 @@ const makerjs2kicad = exports._makerjs2kicad = (model, layer) => {
             const p = wp.pathContext
             switch (p.type) {
                 case 'line':
-                    grs.push(`(gr_line (start ${xy(p.origin)}) (end ${xy(p.end)}) (angle 90) (layer ${layer}) (width 0.15))`)
+                    grs.push(`(gr_line (start ${xy(p.origin)}) (end ${xy(p.end)}) (layer "${layer}") (width 0.15))`)
                     break
                 case 'arc':
-                    const arc_center = p.origin
-                    const angle_start = p.startAngle > p.endAngle ? p.startAngle - 360 : p.startAngle
-                    const angle_diff = Math.abs(p.endAngle - angle_start)
-                    const arc_end = m.point.rotate(m.point.add(arc_center, [p.radius, 0]), angle_start, arc_center)
-                    grs.push(`(gr_arc (start ${xy(arc_center)}) (end ${xy(arc_end)}) (angle ${-angle_diff}) (layer ${layer}) (width 0.15))`)
+                    // Normalize angles to the range [0, 360]
+                    let startAngle = ((p.startAngle % 360) + 360) % 360;
+                    let endAngle = ((p.endAngle % 360) + 360) % 360;
+
+                    // check the case when end angle is smaller than start angle
+                    if (endAngle < startAngle) {
+                        endAngle += 360;
+                    }
+                    const start = [p.origin[0] + p.radius * Math.cos(startAngle * (Math.PI / 180)), p.origin[1] + p.radius * Math.sin(startAngle * (Math.PI / 180))]
+                    const mid = [p.origin[0] + p.radius * Math.cos(((startAngle + endAngle) * (Math.PI / 180)) / 2), p.origin[1] + p.radius * Math.sin(((startAngle + endAngle) * (Math.PI / 180)) / 2)]
+                    const end = [p.origin[0] + p.radius * Math.cos(endAngle * (Math.PI / 180)), p.origin[1] + p.radius * Math.sin(endAngle * (Math.PI / 180))]
+                    grs.push(`(gr_arc (start ${xy(start)}) (mid ${xy(mid)}) (end ${xy(end)}) (layer "${layer}") (width 0.15))`)
                     break
                 case 'circle':
                     const circle_center = p.origin
                     const circle_end = m.point.add(circle_center, [p.radius, 0])
-                    grs.push(`(gr_circle (center ${xy(circle_center)}) (end ${xy(circle_end)}) (layer ${layer}) (width 0.15))`)
+                    grs.push(`(gr_circle (center ${xy(circle_center)}) (end ${xy(circle_end)}) (layer "${layer}") (width 0.15))`)
                     break
                 default:
                     throw new Error(`Can't convert path type "${p.type}" to kicad!`)
@@ -202,8 +227,9 @@ const footprint = exports._footprint = (points, net_indexer, component_indexer, 
         }
 
         // combine default value with potential user override
-        let value = params[param_name] !== undefined ? params[param_name] : parsed_def.value
-        const type = parsed_def.type
+        let value = prep.extend(parsed_def.value, params[param_name])
+        let type = parsed_def.type
+
 
         // templating support, with conversion back to raw datatypes
         const converters = {
@@ -213,7 +239,8 @@ const footprint = exports._footprint = (points, net_indexer, component_indexer, 
             array: v => yaml.load(v),
             object: v => yaml.load(v),
             net: v => v,
-            anchor: v => yaml.load(v)
+            anchor: v => v,
+            array: v => v
         }
         a.in(type, `${name}.params.${param_name}.type`, Object.keys(converters))
         if (a.type(value)() == 'string') {
@@ -245,6 +272,7 @@ const footprint = exports._footprint = (points, net_indexer, component_indexer, 
 
     // footprint positioning
     parsed_params.at = `(at ${point.x} ${-point.y} ${point.r})`
+    parsed_params.place = [point.x, -point.y]
     parsed_params.rot = point.r
     parsed_params.ixy = (x, y) => {
         const sign = point.meta.mirrored ? -1 : 1
@@ -340,13 +368,22 @@ exports.parse = (config, points, outlines, units) => {
 
         // finalizing nets
         const nets_arr = []
-        const add_nets_arr = []
+        const add_default_nets_arr = []
+        const add_power_nets_arr = []
         for (const [net, index] of Object.entries(nets)) {
             nets_arr.push(`(net ${index} "${net}")`)
-            add_nets_arr.push(`(add_net "${net}")`)
+            if (['vcc', 'vdd', 'vbus', 'raw', 'bplus', 'gnd'].includes(net.toLowerCase())) {
+                add_power_nets_arr.push(`(add_net "${net}")`)
+            } else {
+                add_default_nets_arr.push(`(add_net "${net}")`)
+            }
         }
 
-        const netclass = kicad_netclass.replace('__ADD_NET', add_nets_arr.join('\n'))
+        const power_filter = net => {}
+        const signal_filter = net => { !power_filter(net) }
+
+        const default_netclass = kicad_default_netclass.replace('__ADD_NET', add_default_nets_arr.join('\n'))
+        const power_netclass = kicad_power_netclass.replace('__ADD_NET', add_power_nets_arr.join('\n'))
         const nets_text = nets_arr.join('\n')
         const footprint_text = footprints.join('\n')
         const outline_text = Object.values(kicad_outlines).join('\n')
@@ -357,7 +394,8 @@ exports.parse = (config, points, outlines, units) => {
         results[pcb_name] = `
             ${personalized_prefix}
             ${nets_text}
-            ${netclass}
+            ${default_netclass}
+            ${power_netclass}
             ${footprint_text}
             ${outline_text}
             ${kicad_suffix}
@@ -366,3 +404,4 @@ exports.parse = (config, points, outlines, units) => {
 
     return results
 }
+
